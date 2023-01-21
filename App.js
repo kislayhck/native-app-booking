@@ -11,8 +11,6 @@ import BookingForm from "./screens/BookingForm"
 import Profile from "./screens/Profile";
 import AllBooking from "./screens/AllBooking";
 
-
-
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -23,7 +21,7 @@ export default function App() {
       <TailwindProvider>
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen name="homeName" component={HomeScreen} />
+            <Stack.Screen name="home" component={HomeScreen} />
             <Stack.Screen name="booking" component={Booking} />
             <Stack.Screen name="bookingForm" component={BookingForm} />
             <Stack.Screen name="profile" component={Profile} />

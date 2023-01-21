@@ -8,6 +8,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider as PaperProvider } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native'
+
 
 import HomeScreen from "../screens/HomeScreen"
 import Profile from "../screens/Profile";
@@ -23,45 +25,21 @@ const allBooking = "AllBooking";
 
 
 function TabIndicator() {
-    const Tab = createBottomTabNavigator();
+
+    const navigation = useNavigation();
 
     return (
-        <Tab.Navigator
-            initialRouteName={homeName}
-            screenOptions={({ route }) => ({
-                tabBarIcon: ({ focused, color, size }) => {
-                    let iconName;
-                    let rn = route.name;
-
-                    if (rn === homeName) {
-                        iconName = focused ? 'home' : 'home-outline';
-
-                    } else if (rn === detailsName) {
-                        iconName = focused ? 'list' : 'list-outline';
-
-                    }
-                    else if (rn === allBooking) {
-                        iconName = focused ? 'pricetags' : 'pricetags-outline';
-
-                    }
-                    else if (rn === profile) {
-                        iconName = focused ? 'person' : 'person-outline';
-                    }
-                    // You can return any component that you like here!
-                    return <Ionicons name={iconName} size={size} color={color} />;
-                },
-            })}
-            tabBarOptions={{
-                activeTintColor: 'tomato',
-                inactiveTintColor: 'grey',
-                labelStyle: { paddingBottom: 10, fontSize: 10 },
-                style: { padding: 10, height: 70 }
-            }}>
-
-            <Tab.Screen name={homeName} component={HomeScreen} />
-            <Tab.Screen name={allBooking} component={AllBooking} />
-            <Tab.Screen name={profile} component={Profile} />
-        </Tab.Navigator>
+        <View className="flex-row bg-[#0B646B] justify-between px-8 p-3 ml-2 mr-2 rounded-md fixed bottom-10">
+            <View onPress={() => navigation.navigate("profile")}>
+                <Ionicons name="home" size="25" color="white" onPress={() => navigation.navigate("home")}/>
+            </View>
+            <View>
+                <Ionicons name="list" size="25" color="white" onPress={() => navigation.navigate("allBooking")}/>
+            </View>
+            <View>
+                <Ionicons name="person" size="25" color="white" onPress={() => navigation.navigate("profile")}/>
+            </View>
+        </View>
     )
 }
 
